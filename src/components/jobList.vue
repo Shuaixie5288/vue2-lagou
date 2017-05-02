@@ -1,5 +1,5 @@
 <template>
-  <ul>
+  <ul v-if="list.length">
     <li class="list-item" v-for="item in list">
       <img class="item-logo" :src="'//www.lgstatic.com/' + item.companyLogo">
       <div class="item-desc">
@@ -19,9 +19,9 @@
 export default {
   name: 'jobList',
   data: () => ({
-    list: [],
     pageNo: 1
   }),
+  props: ['list'],
   methods: {
     loadMore: function(pageNo) {
       pageNo || this.pageNo++;

@@ -26,3 +26,4 @@ var server = http.createServer(function (req, res) {
     res.end(`${query.callback}(${data})`);
   });
 }).listen(8888);
+console.log('The server listening at 8888')

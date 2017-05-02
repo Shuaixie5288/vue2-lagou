@@ -1,7 +1,7 @@
 <template>
   <div id="search">
     <div class="linputer">
-      <div class="lbutton" @click="toggleCitys()">
+      <div class="lbutton" @click="showCitys()">
         <span class="city">{{positionName}}</span>
         <span class="cityicon"></span>
       </div>
@@ -41,7 +41,7 @@ export default {
     }
   },
   methods: {
-    toggleCitys () {
+    showCitys () {
       this.citys = !this.citys;
     },
     setPosition (e) {
