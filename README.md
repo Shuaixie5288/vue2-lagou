@@ -1,6 +1,8 @@
 # vue2-lagou
 
-> A Vue.js project
+> vue2 仿拉勾网的单页应用(开发中...)
+
+### 技术栈 vue2 + vue-router + webpack 
 
 ## Build Setup
 
@@ -11,6 +13,7 @@ npm install
 # serve with hot reload at localhost:8080
 npm run dev
 
+# 因为使用反向代理获取的数据，生产环境暂时没有数据
 # build for production with minification
 npm run build
 
