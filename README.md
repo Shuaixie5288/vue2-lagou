@@ -2,7 +2,7 @@
 
 > vue2 仿拉勾网的单页应用(开发中...)
 
-### 技术栈 vue2 + vue-router + webpack 
+### 技术栈 vue2 + vue-router + webpack + less
 
 ## Build Setup
 
