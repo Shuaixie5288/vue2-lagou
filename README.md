@@ -10,6 +10,7 @@
 # install dependencies
 npm install
 
+# 开发环境
 # serve with hot reload at localhost:8080
 npm run dev
 
