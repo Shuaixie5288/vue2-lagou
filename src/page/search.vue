@@ -2,14 +2,15 @@
   <div id="search">
     <div class="linputer">
       <div class="lbutton" @click="showCitys()">
-        <span class="city">{{positionName}}</span>
+        <span class="city">{{curCity}}</span>
         <span class="cityicon"></span>
       </div>
       <div class="rinput">
-        <input class="inputer" type="text" placeholder="搜索职位或公司">
-        <span class="search"><em class="searchicon"></em></span>
+        <input class="inputer" type="text" v-model="key" @keydown.13="searchAction()" placeholder="搜索职位或公司">
+        <span class="search" @click="searchAction()"><em class="searchicon"></em></span>
       </div>
     </div>
+    <job-list :list="list" :page-No="pageNo"></job-list>
     <div v-if="citys">
       <div class="cities-header">热门城市</div>
       <table class="cities-list" @click="setPosition($event)">
@@ -31,12 +32,17 @@
 </template>
 
 <script>
+import jobList from '../components/jobList'
+import getData from '../service/getData'
+
 export default {
   name: 'search',
   data () {
     return {
-      positionName: '全国',
+      curCity: '全国',
       citys: false,
+      key: '',
+      pageNo: 1,
       list: []
     }
   },
@@ -45,9 +51,19 @@ export default {
       this.citys = !this.citys;
     },
     setPosition (e) {
-      e.target.innerText && (this.positionName = e.target.innerText);
+      e.target.innerText && (this.curCity = e.target.innerText);
       this.citys = false;
+    },
+    searchAction () {
+      getData.getSearchData(this.curCity, this.key, this.pageNo).then((result) => {
+        console.log(this)
+        this.citys = false;
+        this.list.push.apply(this.list, result.body.content.data.page.result);
+      })
     }
+  },
+  components: {
+    jobList
   }
 }
 </script>
@@ -68,6 +84,7 @@ export default {
   text-align: center;
   width: 88px;
   border-right: 1px solid #e8e8e8;
+  .activeBg;
 }
 #search .city {
   display: inline-block;
@@ -104,6 +121,7 @@ export default {
     line-height: 45px;
     float: right;
     position: relative;
+    .activeBg;
 }
 #search .searchicon {
     display: block;

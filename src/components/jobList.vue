@@ -25,8 +25,8 @@ export default {
   methods: {
     loadMore: function(pageNo) {
       pageNo || this.pageNo++;
-      var url = `https://m.lagou.com/listmore.json?pageNo=${this.pageNo}[@]pageSize=15`;
-      this.$http.jsonp('http://localhost:8888?url=' + url).then((result) => {
+      var url = `listmore.json?pageNo=${this.pageNo}&pageSize=15`;
+      this.$http.get(url).then((result) => {
         this.list.push.apply(this.list, result.body.content.data.page.result);
       })
     }

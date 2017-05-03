@@ -28,7 +28,8 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/listmore.json': 'https://m.lagou.com'
+      '/listmore.json': 'https://m.lagou.com',
+      '/search.json': 'https://m.lagou.com',
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README

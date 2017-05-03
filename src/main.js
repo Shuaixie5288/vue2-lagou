@@ -9,10 +9,8 @@ import App from './App'
 import router from './router'
 import './config/rem'
 
-
 Vue.config.productionTip = true
 Vue.use(VueResource)
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
