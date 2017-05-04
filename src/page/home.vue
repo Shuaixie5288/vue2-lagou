@@ -1,11 +1,12 @@
 <template>
   <div class="home">
-    <job-list :list="list"></job-list>
+    <job-list :list="list" @loadMore="loadMore"></job-list>
   </div>
 </template>
 
 <script>
 import jobList from '../components/jobList'
+import getData from '../service/getData'
 
 export default {
   name: 'home',
@@ -14,10 +15,20 @@ export default {
       list: []
     }
   },
-  mounted () {
-      this.$http.get('listmore.json?pageNo=1&pageSize=15').then((result) => {
+  methods: {
+    loadMore: function(pageNo) {
+      getData.getHomeData(pageNo).then((result) => {
         this.list.push.apply(this.list, result.body.content.data.page.result);
       })
+    }
+  },
+  mounted () {
+    this.loadMore(1)
+  },
+  events: {
+    'loadMore': function() {
+      console.log(arguments)
+    }
   },
   components: {
     jobList

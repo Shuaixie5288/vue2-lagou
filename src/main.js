@@ -6,7 +6,7 @@ import './style/common'
 import Vue from 'vue'
 import VueResource from 'vue-resource'
 import App from './App'
-import router from './router'
+import router from './router/router'
 import './config/rem'
 
 Vue.config.productionTip = true

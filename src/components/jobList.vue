@@ -23,12 +23,8 @@ export default {
   }),
   props: ['list'],
   methods: {
-    loadMore: function(pageNo) {
-      pageNo || this.pageNo++;
-      var url = `listmore.json?pageNo=${this.pageNo}&pageSize=15`;
-      this.$http.get(url).then((result) => {
-        this.list.push.apply(this.list, result.body.content.data.page.result);
-      })
+    loadMore: function() {
+      this.$emit('loadMore', ++this.pageNo);
     }
   }
 }

@@ -8,7 +8,7 @@
     </section>
     <footer class="footer">
       <ul class="">
-        <li v-for="(menu, i) in menus" :class="{selected: menu.path == curPath}"  @click="menuAction(menu.path)">{{ menu.text }}</li>
+        <router-link tag="li" v-for="menu in menus" :key="menu.text" :to="menu.path" :class="{selected: selectedAction(menu.path)}">{{ menu.text }}</router-link>  
       </ul>
     </footer>
   </div>
@@ -21,7 +21,7 @@ export default {
     return {
       title: '拉勾网',
       menus: [{
-        path: '/',
+        path: '/home',
         text: '职位'
       },{
         path: '/search',
@@ -30,17 +30,12 @@ export default {
         path: '/user',
         text: '我的'
       }],
-      curPath: '/'
     }
   },
   methods: {
-    menuAction (path) {
-      this.curPath = path;
-      this.$router.push(path);
+    selectedAction (path) {
+      return this.$router.currentRoute.path === path;
     }
-  },
-  created () {
-    this.curPath = this.$router.currentRoute.path;
   }
 }
 </script>

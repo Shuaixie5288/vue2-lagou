@@ -5,6 +5,15 @@ function http(url, data) {
 }
 //https://m.lagou.com/search.json?city=%E5%85%A8%E5%9B%BD&positionName=w&pageNo=1&pageSize=15
 export default {
+  getHomeData(pageNo) {
+    var data = {
+      params: {
+        pageNo,
+        pageSize: 15
+      }
+    }
+    return http('/listmore.json', data);
+  },
   getSearchData(city, positionName, pageNo) {
     var data = {
       params: {
@@ -16,4 +25,5 @@ export default {
     }
     return http('/search.json', data);
   }
+
 }

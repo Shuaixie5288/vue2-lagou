@@ -6,59 +6,62 @@
         <span class="cityicon"></span>
       </div>
       <div class="rinput">
-        <input class="inputer" type="text" v-model="key" @keydown.13="searchAction()" placeholder="搜索职位或公司">
-        <span class="search" @click="searchAction()"><em class="searchicon"></em></span>
+        <input class="inputer" type="text" v-model="key" @keydown.13="getSearchData(1, true)" placeholder="搜索职位或公司">
+        <span class="search" @click="getSearchData(1, true)"><em class="searchicon"></em></span>
       </div>
     </div>
-    <job-list :list="list" :page-No="pageNo"></job-list>
-    <div v-if="citys">
-      <div class="cities-header">热门城市</div>
-      <table class="cities-list" @click="setPosition($event)">
-        <tbody>
-          <tr class="cities-list-item">
-            <td class="cities-item" data-item="北京">北京</td>
-            <td class="cities-item" data-item="上海">上海</td>
-            <td class="cities-item" data-item="广州">广州</td>
-          </tr>
-          <tr class="cities-list-item">
-            <td class="cities-item" data-item="深圳">深圳</td>
-            <td class="cities-item" data-item="成都">成都</td>
-            <td class="cities-item" data-item="杭州">杭州</td>
-          </tr>
-        </tbody>
-      </table>
+    <job-list :list="list" @loadMore="getSearchData"></job-list>
+    <div v-if="citys" v-for="v in citiesData" @click="setCurCity($event)">
+      <div class="cities-header">{{v.nameStr}}</div>
+      <ul style="overflow: hidden;">
+        <li class="cities-item" v-for="city in v.cityList">{{city}}</li>
+      </ul>
+    </div>
+    <div class="list-empty" v-show="noDataTips">
+      <span class="icon"></span>
+      <span class="text">拉勾上暂时没有这样的职位</span>
     </div>
   </div>
 </template>
 
 <script>
 import jobList from '../components/jobList'
+import citiesData from '../service/citiesData'
 import getData from '../service/getData'
 
 export default {
   name: 'search',
   data () {
     return {
+      citiesData: citiesData,
       curCity: '全国',
-      citys: false,
+      citys: true,
       key: '',
-      pageNo: 1,
-      list: []
+      list: [],
+      noDataTips: false
     }
   },
   methods: {
     showCitys () {
+      this.list = [];
       this.citys = !this.citys;
+      this.noDataTips = false;
     },
-    setPosition (e) {
+    setCurCity (e) {
+      if(!e.target.className.match('cities-item')) return;
       e.target.innerText && (this.curCity = e.target.innerText);
       this.citys = false;
     },
-    searchAction () {
-      getData.getSearchData(this.curCity, this.key, this.pageNo).then((result) => {
-        console.log(this)
-        this.citys = false;
-        this.list.push.apply(this.list, result.body.content.data.page.result);
+    getSearchData (pageNo, isSearch) {
+      isSearch && (this.list = []);
+      this.citys = false;
+      getData.getSearchData(this.curCity, this.key, pageNo).then((result) => {
+        if(result.body.content.data.page.result.length === 0) {
+          this.noDataTips = true;
+        } else {
+          this.list = this.list.concat(result.body.content.data.page.result);
+          this.noDataTips = false;
+        }
       })
     }
   },
@@ -131,10 +134,6 @@ export default {
     background: url(../images/icon.png) no-repeat -14px -2.5px;
     background-size: 250px 250px;
 }
-.cities-list {
-    width: 100%;
-    border-bottom: 1px solid #e8e8e8;
-}
 .cities-header {
     border-bottom: 1px solid #e8e8e8;
     height: 25px;
@@ -144,6 +143,7 @@ export default {
     color: #888;
 }
 .cities-item {
+    float: left;
     height: 60px;
     line-height: 60px;
     text-align: center;
@@ -151,5 +151,19 @@ export default {
     color: #333;
     min-width: 100px;
     .activeBg;
+}
+.list-empty {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-top: 30px;
+    color: #c2cfcc;
+}
+.list-empty .icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: url(../images/icon.png) no-repeat -70px -18.5px;
+    background-size: 250px 250px;
+    vertical-align: middle;
 }
 </style>
