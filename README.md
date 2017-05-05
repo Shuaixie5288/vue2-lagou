@@ -24,4 +24,4 @@ npm run build --report
 
 ## 截图
 
-<img src="https://github.com/shuaixie/vue2-lagou/tree/master/screenshots/home.png" width="315" height="556"/><img src="https://github.com/shuaixie/vue2-lagou/tree/master/screenshots/search.png" width="315" height="556"/>
+<img src="https://github.com/shuaixie5288/vue2-lagou/tree/master/screenshots/home.png" width="315" height="556"/><img src="https://github.com/shuaixie5288/vue2-lagou/tree/master/screenshots/search.png" width="315" height="556"/>
