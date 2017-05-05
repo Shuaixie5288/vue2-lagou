@@ -22,4 +22,7 @@ npm run build
 npm run build --report
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## 截图
+
+<img src="https://github.com/shuaixie/vue2-lagou/blob/master/screenshots/home.png" width="315" height="556"/>
+<img src="https://github.com/shuaixie/vue2-lagou/blob/master/screenshots/search.png" width="315" height="556"/>
