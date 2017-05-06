@@ -60,7 +60,7 @@ export default {
     getSearchData (pageNo, isSearch) {
       isSearch && (this.list = []);
       this.citys = false;
-      //this.$router.push('/search?city=' + this.curCity + '&key=' + this.key)
+      this.$router.push('/search?city=' + this.curCity + '&key=' + this.key)
       getSearchData(this.curCity, this.key, this.pageNo).then((result) => {
         if(result.body.content.data.page.result.length === 0) {
           this.noDataTips = true;
@@ -72,12 +72,24 @@ export default {
     }
   },
   mounted() {
-    document.body.scrollTop = 0;
+    if(this.$route.fullPath === '/search') {
+      document.body.scrollTop = 0;
+      return
+    }
+    this.citys = false;
+    this.curCity = this.$route.query.city;
+    getSearchData(this.$route.query.city, this.$route.query.key, this.pageNo).then((result) => {
+      if(result.body.content.data.page.result.length === 0) {
+        this.noDataTips = true;
+      } else {
+        this.list = this.list.concat(result.body.content.data.page.result);
+        this.noDataTips = false;
+      }
+    })
   },
   watch: {
     $route(to, from) {
-      console.log(to, from)
-      
+      //console.log(to, from)
     }
   },
   components: {
