@@ -1,7 +1,51 @@
 <template>
   <div>
-    <head-top go-back="true"></head-top>
-    <div id="content" v-html="postDetailsHtml"></div>
+    <head-top go-back="true" title="职位详情"></head-top>
+    <div id="content">
+      <div v-html="postDetailsHtml"></div>
+      <div class="positioneval" v-if="postEvaluate">
+        <div class="eval-title">面试评价
+          <span>(<span>{{postEvaluate.length}}</span>)</span>
+        </div>
+        <ul class="list">
+          <li class="list-item" v-for="item in postEvaluate">
+            <div class="info-wrap">
+              <img :src="'//www.lgstatic.com/' + item.portrait" alt="reviewer avatar">
+              <span class="name">{{item.username}}</span>
+              <span class="time">{{item.createTime | date}}</span>
+              <ul class="score-wrap">
+                <li>
+                  <span class="type">综合评分</span>
+                  <span class="score">{{item.companyScore}}</span>
+                </li>
+                <li>
+                  <span class="type">描述符合</span>
+                  <span class="score">{{item.describeScore}}</span>
+                </li>
+                <li>
+                  <span class="type">面试官</span>
+                  <span class="score">{{item.interviewerScore}}</span>
+                </li>
+                <li>
+                  <span class="type">公司环境</span>
+                  <span class="score">{{Math.round(item.comprehensiveScore)}}</span>
+                </li>
+              </ul>
+            </div>
+            <ul class="tags-wrap">
+              <li v-for="item in item.tagArray">{{item}}</li>
+            </ul>
+            <div class="review-content">{{item.content}}</div>
+            <div class="zan-wrap">
+              <span class="zan" data-id="557000">
+                <i></i>
+                <span class="count">有用(<span>{{item.usefulCount}}</span>)</span>
+              </span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -13,21 +57,29 @@
     data() {
       return {
         postId: null, // 职位ID
-        postDetailsHtml: null // 职位详情html
+        postDetailsHtml: null, // 职位详情html
+        postEvaluate: null, //职位评价
       }
     },
     created() {
-      this.postId = this.$route.query.id
-    },
-    mounted() {
+      this.postId = this.$route.query.id;
+      // 提取后台返回的html中的职位数据
       getPostDetails(this.postId).then((data) => {
         var $dom = document.createElement('div');
         $dom.innerHTML = data.body;
         var $content = $dom.querySelector('#content');
         $content.querySelector('#push_bottom').remove();
         $content.querySelector('#deliver_resume').remove();
+        $content.querySelector('.positioneval').remove();
         this.postDetailsHtml = $content.innerHTML;
+        // 提取评价数据
+        var script = $dom.querySelectorAll('script:last-child')[0].innerText.replace(/require\(.+?\);?/g, '');
+        this.postEvaluate = new Function('', script += 'return global;')().page.result;
+        console.log(new Function('', script += 'return global;')().page.result)
       })
+    },
+    mounted() {
+      
     },
     components: {
       headTop

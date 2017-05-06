@@ -22,7 +22,7 @@
       <span class="icon"></span>
       <span class="text">拉勾上暂时没有这样的职位</span>
     </div>
-    <foot-Nav></foot-Nav>
+    <foot-nav></foot-nav>
   </div>
 </template>
 
@@ -37,11 +37,12 @@ export default {
   name: 'search',
   data () {
     return {
-      citiesData: citiesData,
-      curCity: '全国',
+      citiesData: citiesData, // 城市列表
+      curCity: '全国', // 当前选择的城市
       citys: true,
-      key: '',
-      list: [],
+      key: '', // 搜索关键字
+      list: [], // 搜索的职位数据
+      pageNo: 1,
       noDataTips: false
     }
   },
@@ -59,7 +60,8 @@ export default {
     getSearchData (pageNo, isSearch) {
       isSearch && (this.list = []);
       this.citys = false;
-      getSearchData(this.curCity, this.key, pageNo).then((result) => {
+      //this.$router.push('/search?city=' + this.curCity + '&key=' + this.key)
+      getSearchData(this.curCity, this.key, this.pageNo).then((result) => {
         if(result.body.content.data.page.result.length === 0) {
           this.noDataTips = true;
         } else {
@@ -67,6 +69,15 @@ export default {
           this.noDataTips = false;
         }
       })
+    }
+  },
+  mounted() {
+    document.body.scrollTop = 0;
+  },
+  watch: {
+    $route(to, from) {
+      console.log(to, from)
+      
     }
   },
   components: {

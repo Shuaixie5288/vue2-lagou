@@ -7,12 +7,10 @@
 
 <script>
 export default {
-  data() {
-    return {
-      title: '拉勾网',
-    }
-  },
-  props: ['goBack']
+  props: {
+    'title': {default: '拉勾网'},
+    'goBack': String
+  }
 }
 </script>
 
@@ -28,7 +26,9 @@ export default {
   background-color: #00b38a;
 }
 .go-back {
-  float: left;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 50px;
   height: 100%;
   background: url(../images/icon2.png) no-repeat 20px -31px;

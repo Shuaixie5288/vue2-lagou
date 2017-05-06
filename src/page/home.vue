@@ -2,7 +2,7 @@
   <div class="home">
     <head-top></head-top>
     <job-list :list="list" @loadMore="loadMore"></job-list>
-    <foot-Nav></foot-Nav>
+    <foot-nav></foot-nav>
   </div>
 </template>
 
@@ -16,7 +16,7 @@ export default {
   name: 'home',
   data () {
     return {
-      list: []
+      list: [] // 职位数据
     }
   },
   methods: {

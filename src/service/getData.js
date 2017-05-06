@@ -7,7 +7,7 @@ function http(url, data) {
 var getHomeData = (pageNo) => {
   var data = {
     params: {
-      pageNo,
+      pageNo, // 当前页
       pageSize: 15
     }
   }

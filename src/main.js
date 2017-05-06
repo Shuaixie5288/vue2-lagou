@@ -11,10 +11,15 @@ import './config/rem'
 
 Vue.config.productionTip = true
 Vue.use(VueResource)
-/* eslint-disable no-new */
+
+Vue.filter('date', function(val, cutChar) {
+  cutChar = typeof cutChar === 'string' ? cutChar : '/';
+  return new Date(val).toLocaleString().split(' ')[0].replace('/', cutChar);
+})
+
 new Vue({
   el: '#app',
   router: router,
   template: '<App/>',
-  components: { App }
+  components: { App },
 })
