@@ -1,12 +1,16 @@
 <template>
   <div class="home">
+    <head-top></head-top>
     <job-list :list="list" @loadMore="loadMore"></job-list>
+    <foot-Nav></foot-Nav>
   </div>
 </template>
 
 <script>
+import headTop from '../components/head'
+import footNav from '../components/foot'
 import jobList from '../components/jobList'
-import getData from '../service/getData'
+import {getHomeData} from '../service/getData'
 
 export default {
   name: 'home',
@@ -17,7 +21,7 @@ export default {
   },
   methods: {
     loadMore: function(pageNo) {
-      getData.getHomeData(pageNo).then((result) => {
+      getHomeData(pageNo).then((result) => {
         this.list.push.apply(this.list, result.body.content.data.page.result);
       })
     }
@@ -31,6 +35,8 @@ export default {
     }
   },
   components: {
+    headTop,
+    footNav,
     jobList
   }
 }

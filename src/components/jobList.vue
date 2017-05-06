@@ -1,6 +1,6 @@
 <template>
   <ul v-if="list.length">
-    <li class="list-item" v-for="item in list">
+    <router-link tag="li" :to="{path: 'jobs', query:{id: item.positionId}}" v-for="item in list" :key="item.positionId" class="list-item">
       <img class="item-logo" :src="'//www.lgstatic.com/' + item.companyLogo">
       <div class="item-desc">
         <h3 class="item-title">{{ item.companyName }}</h3>
@@ -10,7 +10,7 @@
         </p>
         <p class="item-time">{{ item.createTime }}</p>
       </div>
-    </li>
+    </router-link>
     <li class="list-more" @click="loadMore()">加载更多</li>
   </ul>
 </template>

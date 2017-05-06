@@ -1,5 +1,6 @@
 <template>
   <div id="search">
+    <head-top></head-top>
     <div class="linputer">
       <div class="lbutton" @click="showCitys()">
         <span class="city">{{curCity}}</span>
@@ -21,13 +22,16 @@
       <span class="icon"></span>
       <span class="text">拉勾上暂时没有这样的职位</span>
     </div>
+    <foot-Nav></foot-Nav>
   </div>
 </template>
 
 <script>
+import headTop from '../components/head'
+import footNav from '../components/foot'
 import jobList from '../components/jobList'
 import citiesData from '../service/citiesData'
-import getData from '../service/getData'
+import {getSearchData} from '../service/getData'
 
 export default {
   name: 'search',
@@ -55,7 +59,7 @@ export default {
     getSearchData (pageNo, isSearch) {
       isSearch && (this.list = []);
       this.citys = false;
-      getData.getSearchData(this.curCity, this.key, pageNo).then((result) => {
+      getSearchData(this.curCity, this.key, pageNo).then((result) => {
         if(result.body.content.data.page.result.length === 0) {
           this.noDataTips = true;
         } else {
@@ -66,6 +70,8 @@ export default {
     }
   },
   components: {
+    headTop,
+    footNav,
     jobList
   }
 }
