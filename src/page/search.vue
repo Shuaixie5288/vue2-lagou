@@ -7,8 +7,8 @@
         <span class="cityicon"></span>
       </div>
       <div class="rinput">
-        <input class="inputer" type="text" v-model="key" @keydown.13="getSearchData(1, true)" placeholder="搜索职位或公司">
-        <span class="search" @click="getSearchData(1, true)"><em class="searchicon"></em></span>
+        <input class="inputer" type="text" v-model="key" @keydown.13="getSearchData(1)" placeholder="搜索职位或公司">
+        <span class="search" @click="getSearchData(1)"><em class="searchicon"></em></span>
       </div>
     </div>
     <job-list :list="list" @loadMore="getSearchData"></job-list>
@@ -57,8 +57,12 @@ export default {
       e.target.innerText && (this.curCity = e.target.innerText);
       this.citys = false;
     },
-    getSearchData (pageNo, isSearch) {
-      isSearch && (this.list = []);
+    getSearchData (pageNo) {
+      if(pageNo === 1) {
+        this.list = [];
+      } else {
+        this.pageNo = pageNo;
+      }
       this.citys = false;
       this.$router.push('/search?city=' + this.curCity + '&key=' + this.key)
       getSearchData(this.curCity, this.key, this.pageNo).then((result) => {
@@ -78,7 +82,8 @@ export default {
     }
     this.citys = false;
     this.curCity = this.$route.query.city;
-    getSearchData(this.$route.query.city, this.$route.query.key, this.pageNo).then((result) => {
+    this.key = this.$route.query.key;
+    getSearchData(this.$route.query.city, this.$route.query.key, 1).then((result) => {
       if(result.body.content.data.page.result.length === 0) {
         this.noDataTips = true;
       } else {

@@ -4,13 +4,11 @@ import 'normalize.css'
 import 'minireset.css'
 import './style/common'
 import Vue from 'vue'
-import VueResource from 'vue-resource'
 import App from './App'
 import router from './router/router'
 import './config/rem'
 
 Vue.config.productionTip = true
-Vue.use(VueResource)
 
 Vue.filter('date', function(val, cutChar) {
   cutChar = typeof cutChar === 'string' ? cutChar : '/';

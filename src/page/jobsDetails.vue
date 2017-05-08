@@ -74,8 +74,7 @@
         this.postDetailsHtml = $content.innerHTML;
         // 提取评价数据
         var script = $dom.querySelectorAll('script:last-child')[0].innerText.replace(/require\(.+?\);?/g, '');
-        this.postEvaluate = new Function('', script += 'return global;')().page.result;
-        console.log(new Function('', script += 'return global;')().page.result)
+        this.postEvaluate = new Function('', script + ';return global;')().page.result;
       })
     },
     mounted() {

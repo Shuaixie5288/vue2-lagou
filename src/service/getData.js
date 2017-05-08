@@ -1,8 +1,9 @@
 import Vue from 'vue'
+import VueResource from 'vue-resource'
 
-function http(url, data) {
-  return Vue.http.get(url, data)
-}
+Vue.use(VueResource)
+
+var http = Vue.http;console.log([Vue])
 
 var getHomeData = (pageNo) => {
   var data = {
@@ -11,7 +12,7 @@ var getHomeData = (pageNo) => {
       pageSize: 15
     }
   }
-  return http('/listmore.json', data);
+  return http.get('/listmore.json', data);
 }
 
 var getSearchData = (city, positionName, pageNo) =>{
@@ -23,11 +24,34 @@ var getSearchData = (city, positionName, pageNo) =>{
       pageSize: 15
     }
   }
-  return http('/search.json', data);
+  return http.get('/search.json', data);
 }
 
 var getPostDetails = (postId) => {
-  return http(`/jobs/${postId}.html`);
+  return http.get(`/jobs/${postId}.html`);
 }
 
-export {getHomeData, getSearchData, getPostDetails}
+var userLogin = (username, password) => {
+  return new Promise((resolve, reject) => {
+    http.get('/login/login.html').then((data) => {
+      var $dom = document.createElement('div');
+      $dom.innerHTML = data.body;
+      new Function('', $dom.querySelector('script').innerText)();
+      var options  = {
+        body: {
+          username,
+          password,
+          isValidate: true,
+        },
+        headers: {
+          X_Anti_Forge_Token: window.X_Anti_Forge_Token,
+          X_Anti_Forge_Code: window.X_Anti_Forge_Code
+        },
+        emulateJSON: true
+      }
+      resolve(http.post(`/login/login.json`, options.body, options));
+    })
+  })
+}
+
+export {getHomeData, getSearchData, getPostDetails, userLogin}

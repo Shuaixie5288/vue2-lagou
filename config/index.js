@@ -31,6 +31,7 @@ module.exports = {
       '/listmore.json': 'https://m.lagou.com',
       '/search.json': 'https://m.lagou.com',
       '/jobs': 'https://m.lagou.com',
+      '/login': 'https://passport.lagou.com',
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README

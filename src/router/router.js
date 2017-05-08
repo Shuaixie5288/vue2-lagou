@@ -4,6 +4,7 @@ import home from '@/page/home'
 import search from '@/page/search'
 import user from '@/page/user'
 import jobsDetails from '@/page/jobsDetails'
+import login from '@/page/login'
 
 Vue.use(Router)
 
@@ -31,6 +32,11 @@ export default new Router({
     {
       path: '/jobs',
       component: jobsDetails
-    }
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: login
+    },
   ]
 })
