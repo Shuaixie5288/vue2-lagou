@@ -31,6 +31,7 @@
 <script>
   import headTop from '../components/head'
   import {userLogin} from '../service/getData'
+  import md5 from '../assets/md5-lagou.js'
 
   export default {
     data() {
@@ -42,7 +43,8 @@
     },
     methods: {
       login() {
-        userLogin(this.username, this.password).then((data) => {
+        //console.log(md5(129438))
+        userLogin(this.username, 'a8dc2cff69207970bd861bbabf0ec497').then((data) => {
           console.log(data);
           this.html = data.body;
         })

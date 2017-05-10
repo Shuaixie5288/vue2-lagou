@@ -1,7 +1,7 @@
 <template>
   <div id="user">
     <head-top></head-top>
-    <div id="content">
+    <div>
       <div class="logininfo">
         <div class="nologin center">
           <router-link :to="'login'" class="loginbut">登录 / 注册</router-link>
@@ -33,22 +33,22 @@
 </script>
 
 <style lang="less">
-#content {
+#user {
     margin-bottom: 45px;
     padding: 0 15px;
 }
-#content .center {
+#user .center {
     text-align: center;
     width: 125px;
     margin: 0 auto;
 }
-#content .logininfo {
+#user .logininfo {
     margin: 10px 0;
 }
-#content .nologin {
+#user .nologin {
     height: 111px;
 }
-#content .nologin .loginbut {
+#user .nologin .loginbut {
     font-size: 1.2rem;
     color: #fff;
     display: block;
@@ -61,13 +61,13 @@
     position: relative;
     top: 33px;
 }
-#content .buttons {
+#user .buttons {
     margin-bottom: 10px;
 }
-#content .buttons .deliver {
+#user .buttons .deliver {
     float: left;
 }
-#content .buttons .button {
+#user .buttons .button {
     display: block;
     width: 48%;
     height: 86px;
@@ -79,23 +79,23 @@
     margin-top: 10px;
     position: relative;
 }
-#content .buttons .interview {
+#user .buttons .interview {
     float: right;
 }
-#content .buttons .invitation {
+#user .buttons .invitation {
     float: left;
 }
-#content .buttons .collect {
+#user .buttons .collect {
     float: right;
 }
-#content .buttons:after {
+#user .buttons:after {
     content: ".";
     display: block;
     height: 0;
     clear: both;
     visibility: hidden;
 }
-#content:after {
+#user:after {
     content: ".";
     display: block;
     height: 0;
