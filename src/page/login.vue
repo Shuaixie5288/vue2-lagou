@@ -86,8 +86,6 @@
     font: 1.4em "黑体";
     color: #333;
     background: #fff;
-    -moz-border-radius: 0;
-    -webkit-border-radius: 0;
     border-radius: 0;
     padding: 6% 5%;
     margin: 0;
@@ -100,9 +98,6 @@
     position: absolute;
     bottom: 33%;
     right: 5%;
-    -moz-transition: transform .3s linear 0s;
-    -webkit-transition: transform .3s linear 0s;
-    -o-transition: transform .3s linear 0s;
     transition: transform .3s linear 0s;
 }
 .btn_green {
@@ -113,11 +108,7 @@
     color: #fff;
     text-align: center;
     background: #0ac599;
-    -webkit-box-shadow: 0 2px 0 #008765;
-    -moz-box-shadow: 0 2px 0 #008765;
     box-shadow: 0 2px 0 #008765;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
     border-radius: 5px;
     margin: 20px 0;
     padding: 5%;
@@ -135,26 +126,16 @@
     text-decoration: none;
     text-align: center;
     border: 1px solid #45e3be;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
     border-radius: 5px;
     margin: 8px 0;
     padding: 5%;
 }
 .top {
-    -moz-border-top-left-radius: 5px!important;
-    -webkit-border-top-left-radius: 5px!important;
-    border-top-left-radius: 5px!important;
-    -moz-border-top-right-radius: 5px!important;
-    -webkit-border-top-right-radius: 5px!important;
-    border-top-right-radius: 5px!important;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 .btm {
-    -moz-border-bottom-left-radius: 5px!important;
-    -webkit-border-bottom-left-radius: 5px!important;
-    border-bottom-left-radius: 5px!important;
-    -moz-border-bottom-right-radius: 5px!important;
-    -webkit-border-bottom-right-radius: 5px!important;
-    border-bottom-right-radius: 5px!important;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 </style>
