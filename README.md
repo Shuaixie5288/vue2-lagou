@@ -1,6 +1,6 @@
 # vue2-lagou
 
-> vue2 仿拉勾网的单页应用(开发中...)
+> vue2 仿拉勾网的单页应用
 
 ### 技术栈 vue2 + vue-router + webpack + less
 
