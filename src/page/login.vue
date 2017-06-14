@@ -2,22 +2,17 @@
   <div id="login">
     <!--<head-top></head-top>-->
     <div class="new_wrapper">
-      <form data-view="loginView">
+      <form>
         <div class="new_register">
-          <div data-propertyname="username" data-controltype="Phone" style="display: block;">
+          <div>
             <input type="text" placeholder="已验证手机/邮箱" class="border_btm r_email top" v-model="username">
           </div>
-          <div data-propertyname="password" data-controltype="Password" style="display: block;">
+          <div>
             <input type="password" placeholder="密码" class="r_psw btm" maxlength="16" v-model="password">
             <i class="eye"></i>
           </div>
         </div>
-        <div id="vcodeWrap" data-propertyname="request_form_verifyCode" data-controltype="VerifyCode" style="display:none;">
-          <input type="text" id="vcode" name="vcode" tabindex="3" placeholder="请证明你不是机器人">
-          <img src="" width="113" height="42" id="vcodeImg">
-          <a>看不清楚，<em>换一张</em></a>
-        </div>
-        <div data-propertyname="submit" data-controltype="Botton" style="display: block;">
+        <div>
           <input type="button" class="btn_green" value="登录" @click="login()">
         </div>
       </form>
