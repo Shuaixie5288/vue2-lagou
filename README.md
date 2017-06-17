@@ -1,10 +1,10 @@
-# vue2-lagou
+## vue2-lagou
 
 > vue2 仿拉勾网的单页应用
 
-### 技术栈 vue2 + vue-router + webpack + less
+#### 技术栈 vue2 + vue-router + webpack + less
 
-## Build Setup
+### Build Setup
 
 ``` bash
 # install dependencies
@@ -22,6 +22,6 @@ npm run build
 npm run build --report
 ```
 
-## 截图
+### 截图
 
 <img src="https://github.com/shuaixie5288/vue2-lagou/raw/master/screenshots/home.png" width="200" height="400"/> <img src="https://github.com/shuaixie5288/vue2-lagou/raw/master/screenshots/search.png" width="200" height="400"/> <img src="https://github.com/shuaixie5288/vue2-lagou/raw/master/screenshots/postDetails.png" width="200" height="400"/>
