@@ -17,9 +17,6 @@ npm run dev
 # 因为使用代理获取的数据，生产环境暂时没有数据
 # build for production with minification
 npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
 ```
 
 ### 截图
