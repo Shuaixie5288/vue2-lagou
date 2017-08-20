@@ -3,8 +3,7 @@ import VueResource from 'vue-resource'
 
 Vue.use(VueResource)
 
-var http = Vue.http;console.log([Vue])
-
+var http = Vue.http;
 var getHomeData = (pageNo) => {
   var data = {
     params: {
