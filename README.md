@@ -1,6 +1,7 @@
 ## vue2-lagou
 
 > vue2 仿拉勾网的单页应用
+> 数据来自拉勾网
 
 #### 技术栈 vue2 + vue-router + webpack + less
 
@@ -14,7 +15,6 @@ npm install
 # serve with hot reload at localhost:8080
 npm run dev
 
-# 因为使用代理获取的数据，生产环境暂时没有数据
 # build for production with minification
 npm run build
 ```
