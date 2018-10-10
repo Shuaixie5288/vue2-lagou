@@ -1,6 +1,7 @@
 ## vue2-lagou
 
 > vue2 仿拉勾网的单页应用
+
 > 数据来自拉勾网
 
 #### 技术栈 vue2 + vue-router + webpack + less
