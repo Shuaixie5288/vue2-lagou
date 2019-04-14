@@ -1,8 +1,10 @@
 ## vue2-lagou
 
-> vue2 仿拉勾网的单页应用
+[![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
 
+> vue2 仿拉勾网的单页应用
 > 数据来自拉勾网
+
 
 #### 技术栈 vue2 + vue-router + webpack + less
 
